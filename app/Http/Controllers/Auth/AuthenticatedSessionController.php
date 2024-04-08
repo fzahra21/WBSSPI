@@ -32,7 +32,11 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect('/dashboard');
+        if (auth()->user()->role === 'auditor') {
+            return redirect('/dashboard');
+        } else if(auth()->user()->role == 'whistleblower') {
+            return redirect('/pengaduan');
+        }   
     }
 
     /**

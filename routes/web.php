@@ -22,15 +22,17 @@ require __DIR__.'/auth.php';
 Route::get('/', [PublicController::class, 'index']);
 Route::get('/editpengaduan', [PublicController::class, 'editpengaduan']);
 Route::get('/detailpengaduan', [PublicController::class, 'detailpengaduan']);
-Route::get('/buatpengaduan', [PublicController::class, 'buatpengaduan']);
-Route::get('/pengaduan', [PublicController::class, 'pengaduan']);
-Route::get('/rincianpengaduan', [PublicController::class, 'rincianpengaduan']);
 
-Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard'], function() {
+Route::group(['middleware' => ['auth','role:auditor'], 'prefix' => 'dashboard'], function() {
     Route::get('/', [DashboardController::class, 'index']);
-
     Route::prefix('laporan')->group(function() {
         Route::get('buat', [LaporanController::class, 'index']);
         Route::post('post', [LaporanController::class, 'create_laporan']);
     });
+});
+
+Route::group(['middleware'=>['auth','role:whistleblower'],'prefix'=>'pengaduan'],function(){
+    Route::get('/', [PublicController::class, 'pengaduan']);
+    Route::get('/buat', [PublicController::class, 'buatpengaduan']);
+    Route::get('/rincian', [PublicController::class, 'rincianpengaduan']);
 });
