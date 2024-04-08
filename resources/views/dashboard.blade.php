@@ -62,10 +62,13 @@ Dashboard
 
               <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                 <li>
-                  <a class="dropdown-item d-flex align-items-center" href="{{'/login'}}">
-                    <i class="bi bi-box-arrow-right"></i>
-                    <span>Keluar</span>
-                  </a>
+                  
+                  <form class="dropdown-item d-flex align-items-center" action = "{{'/logout'}}">
+                    <button type="submit" class="border-0 bg-transparent">
+                      <i class="bi bi-box-arrow-right"></i>
+                      <span>Keluar</span>
+                    </button>
+                  </form>
                 </li>
               </ul>
             </li>
