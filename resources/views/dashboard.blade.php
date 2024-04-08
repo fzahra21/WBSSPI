@@ -93,7 +93,7 @@ Dashboard
           </li>
 
           <li class="nav-item">
-            <a class="nav-link collapsed" href="{{url('/buatlaporan')}}">
+            <a class="nav-link collapsed" href="{{url('/dashboard/laporan/buat')}}">
               <i class="bi bi-upload"></i>
               <span>Upload Laporan</span>
             </a>
