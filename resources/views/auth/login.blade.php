@@ -35,7 +35,7 @@ Login
 @section('main')
 <section class="section register min-vh-80 d-flex flex-column align-items-center justify-content-center py-4">
     <div class="container">
-
+    {{-- 
         <div class="flash-message">
             @foreach (['danger','warning','success','info'] as $msg)
                 @if(Session::has('alert-'.$msg))
@@ -45,8 +45,14 @@ Login
 
                 @endif
             @endforeach
-        </div>
+        </div> --}}
 
+        @if(Session::has('success'))
+        <div class="alert alert-success">
+            {{ Session::get('success') }}
+        </div>
+        @endif
+        
         @if(count($errors) > 0)
             <div class="alert alert-danger">
                 <ul>

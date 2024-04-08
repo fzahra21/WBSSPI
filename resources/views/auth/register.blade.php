@@ -35,7 +35,15 @@ Register
 
 @section('main')
 <div class="container">
-
+    @if(count($errors) > 0)
+      <div class="alert alert-danger">
+          <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{$error}}</li>
+              @endforeach
+          </ul>
+      </div>
+    @endif
     <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
       <div class="container">
         <div class="row justify-content-center">
@@ -57,10 +65,11 @@ Register
                   <p class="text-center small">Enter your personal details to create account</p>
                 </div>
 
-                <form class="row g-3 needs-validation" novalidate>
+                <form class="row g-3 needs-validation" method="POST" action="{{'/register'}}">
+                  @csrf
                   <div class="col-12">
                     <label for="yourName" class="form-label">Your Name</label>
-                    <input type="text" name="name" class="form-control" id="yourName" required>
+                    <input type="text" name="nama" class="form-control" id="yourName" required>
                     <div class="invalid-feedback">Please, enter your name!</div>
                   </div>
 
@@ -68,7 +77,7 @@ Register
                     <label for="yourUsername" class="form-label">Email</label>
                     <div class="input-group has-validation">
                       <span class="input-group-text" id="inputGroupPrepend">@</span>
-                      <input type="text" name="username" class="form-control" id="yourUsername" required>
+                      <input type="email" name="email" class="form-control" id="yourUsername" required>
                       <div class="invalid-feedback">Please choose a username.</div>
                     </div>
                   </div>

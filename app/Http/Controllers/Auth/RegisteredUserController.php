@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Session;
 
 class RegisteredUserController extends Controller
 {
@@ -36,7 +37,7 @@ class RegisteredUserController extends Controller
         $request->validate([
             'nama' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
@@ -46,9 +47,8 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new Registered($user));
+        Session::flash('success', 'Registrasi berhasil! Silakan login dengan akun baru Anda.');
 
-        Auth::login($user);
-
-        return redirect(RouteServiceProvider::HOME);
+        return redirect('login');
     }
 }
