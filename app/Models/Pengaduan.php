@@ -26,4 +26,9 @@ class Pengaduan extends Model
     {
         return $this->belongsTo(Terlapor::class,'id_terlapor');
     }
+
+    public function pelapor()
+    {
+        return $this->belongsTo(Terlapor::class,'id_pelapor');
+    }
 }
