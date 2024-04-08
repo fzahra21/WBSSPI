@@ -15,15 +15,28 @@ Rincian Pengaduan
             <form class="row g-3">
 
               <div class="col-sm-12">
-                  <label for="floatingName">Kategori Pelanggaran : </label>
+                  <label for="floatingName">Kategori Pelanggaran : 
+                   
+                   @if ($data->kategori == 1)
+                   Korupsi
+                   @elseif ($data->kategori == 2)
+                   Pengadaan Barang/Jasa
+                   @elseif ($data->kategori == 3)
+                   Pelanggaran Pengelolaan Keuangan
+                   @elseif ($data->kategori == 4)
+                   Pelanggaran Kepegawaian
+                   @elseif ($data->kategori == 5)
+                   Penyalahgunaan Wewenang
+                   @endif
+                </label>
               </div>
 
               <div class="col-md-12">
-                  <label for="floatingName">Judul Pengaduan : </label>
+                  <label for="floatingName">Judul Pengaduan : {{$data->judul}}</label>
               </div>
 
               <div class="col-sm-12">
-                  <label for="floatingName">Uraian : </label>
+                  <label for="floatingName">Uraian : {{$data->uraian}}</label>
               </div>
 
               <div class="col-sm-12">
@@ -31,31 +44,37 @@ Rincian Pengaduan
               </div>
 
               <div class="col-sm-12">
-                  <embed src="{{asset('/tema/asset/pdf/contoh.pdf')}}" type="application/pdf" width="500" height="400">
-              </div>
+                <embed src="{{ asset('/uploads/' . $data->lampiran) }}" type="application/pdf" width="500" height="400">
+                </div>
 
               <div class="col-sm-12">
                   <label for="floatingName"><b>Pihak Yang Diduga Terlibat</b> </label>
               </div>
 
               <div class="col-sm-12">
-                  <label for="floatingName">Nama Lengkap : </label>
+                  <label for="floatingName">Nama Lengkap : {{$data->terlapor->nama_terlapor}}</label>
               </div>
 
               <div class="col-sm-12">
-                  <label for="floatingName">Jabatan : </label>
+                  <label for="floatingName">Jabatan : {{$data->terlapor->jabatan}} </label>
               </div>
 
               <div class="col-sm-12">
-                  <label for="floatingName">Klasifikasi Jabatan : </label>
+                  <label for="floatingName">Klasifikasi Jabatan :
+                    @if($data->terlapor->klasifikasi == 1)
+                    PNS
+                    @else
+                    Non PNS
+                    @endif
+                 </label>
               </div>
 
               <div class="col-sm-12">
-                  <label for="floatingName">Tanggal : </label>
+                  <label for="floatingName">Tanggal : {{$data->tanggal}}</label>
               </div>
 
               <div class="col-sm-12">
-                  <label for="floatingName">Waktu Perkiraan : </label>
+                  <label for="floatingName">Waktu Perkiraan : {{$data->time}}</label>
               </div>
 
             </form>
