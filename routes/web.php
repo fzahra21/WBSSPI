@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\PengaduanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +33,8 @@ Route::group(['middleware' => ['auth','role:auditor'], 'prefix' => 'dashboard'],
 });
 
 Route::group(['middleware'=>['auth','role:whistleblower'],'prefix'=>'pengaduan'],function(){
-    Route::get('/', [PublicController::class, 'pengaduan']);
-    Route::get('/buat', [PublicController::class, 'buatpengaduan']);
-    Route::get('/rincian', [PublicController::class, 'rincianpengaduan']);
+    Route::get('/', [PengaduanController::class, 'index']);
+    Route::get('/buat', [PengaduanController::class, 'index_create_pengaduan']);
+    Route::post('/post',[PengaduanController::class,'create_pengaduan']);
+    Route::get('/rincian/{id}', [PengaduanController::class, 'index_detail']);
 });

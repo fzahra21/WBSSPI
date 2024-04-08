@@ -14,7 +14,7 @@ Pengaduan Saya
     </nav>
   </div>
 
-  <a href="{{url('/buatpengaduan')}}" class="btn btn-primary mb-4">
+  <a href="{{url('pengaduan/buat')}}" class="btn btn-primary mb-4">
     Buat Pengaduan
   </a>
 
@@ -40,14 +40,35 @@ Pengaduan Saya
                   </tr>
                 </thead>
                 <tbody >
-                  <tr data-href="{{url('pengaduan/rincian')}}">
-                    <th scope="row">1</th>
-                    <td>2457</td>
-                    <td>####</td>
-                    <td>####</td>
-                    <td>####</td>
-                    <td><span class="badge bg-success">Pengaduan Selesai</span></td>
+                  @foreach($data as $index => $pengaduan)
+
+                  <tr data-href="{{url('pengaduan/rincian/'.$pengaduan->id)}}">
+                    <th scope="row">{{$index+1}}</th>
+                    <td>{{$pengaduan->no_pengaduan}}</td>
+                    <td>    @if ($pengaduan->kategori == 1)
+                      Korupsi
+                      @elseif ($pengaduan->kategori == 2)
+                      Pengadaan Barang/Jasa
+                      @elseif ($pengaduan->kategori == 3)
+                      Pelanggaran Pengelolaan Keuangan
+                      @elseif ($pengaduan->kategori == 4)
+                      Pelanggaran Kepegawaian
+                      @elseif ($pengaduan->kategori == 5)
+                      Penyalahgunaan Wewenang
+                      @endif</td>
+                    <td>{{$pengaduan->judul}}</td>
+                    <td>{{$pengaduan->tanggal}}</td>
+                      @if($pengaduan->status == 'Pengaduan Baru')
+                    <td><span class="badge bg-primary">{{$pengaduan->status}}</span></td>
+                      @elseif($pengaduan->status == 'Pengaduan Selesai')
+                      <td><span class="badge bg-success">{{$pengaduan->status}}</span></td>
+                      @elseif($pengaduan->status == 'Pengaduan Ditolak')
+                      <td><span class="badge bg-danger">{{$pengaduan->status}}</span></td>
+                      @elseif($pengaduan->status == 'Sedang Ditelaah')
+                      <td><span class="badge bg-warning">{{$pengaduan->status}}</span></td>
+                    @endif
                   </tr>
+                  @endforeach
                 </tbody>
               </table>
 

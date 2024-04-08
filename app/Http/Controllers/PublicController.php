@@ -26,10 +26,6 @@ class PublicController extends Controller
         return view('detailpengaduan');
     }
 
-    public function buatpengaduan()
-    {
-        return view('buatpengaduan');
-    }
 
     public function pengaduan()
     {

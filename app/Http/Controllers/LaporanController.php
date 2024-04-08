@@ -29,6 +29,7 @@ class LaporanController extends Controller
             $fileName = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('uploads'), $fileName);
         }
+        
         $laporan = Laporan::create([
             'no_aduan' => $request->nomor_aduan,
             'no_sk' => $request->nomor_sk,
