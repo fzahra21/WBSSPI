@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Pengaduan;
 use App\Models\Terlapor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class PengaduanController extends Controller
 {
     public function index () {
-        $data = Pengaduan::all();
+        $data = Pengaduan::where('id_pelapor', Auth::user()->id)->get();
         return view('pengaduan',compact('data'));
     }
 
