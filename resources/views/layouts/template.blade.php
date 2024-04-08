@@ -38,7 +38,7 @@
 
   @yield('hero')
 
-  <main id="main">
+  <main id="main" style="margin:0 !important">
     @yield('main')
   </main>
 

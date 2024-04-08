@@ -34,18 +34,17 @@ Register
 @endsection
 
 @section('main')
-<div class="container">
-    @if(count($errors) > 0)
-      <div class="alert alert-danger">
-          <ul>
-              @foreach ($errors->all() as $error)
-                  <li>{{$error}}</li>
-              @endforeach
-          </ul>
-      </div>
-    @endif
-    <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
-      <div class="container">
+<section class="section register min-vh-80 d-flex flex-column align-items-center justify-content-center py-4">
+  <div class="container">
+        @if(count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            </div>
+          @endif
         <div class="row justify-content-center">
           <div class="col-lg-5 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
@@ -110,8 +109,7 @@ Register
         </div>
       </div>
 
-    </section>
+</section>
 
-  </div>
 @endsection
 
