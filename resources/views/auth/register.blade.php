@@ -71,7 +71,7 @@ Register
                     <input type="text" name="nama" class="form-control" id="yourName" required>
                     <div class="invalid-feedback">Please, enter your name!</div>
                   </div>
-
+                  <input type="hidden" name="role" value="whistleblower">
                   <div class="col-12">
                     <label for="yourUsername" class="form-label">Email</label>
                     <div class="input-group has-validation">
