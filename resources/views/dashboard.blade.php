@@ -33,7 +33,7 @@ Dashboard
                     <i class="bi bi-safe"></i>
                   </div>
                   <div class="ps-3">
-                    <h6>-</h6>
+                    <h6><?= $data_korupsi?></h6>
                     <span class="text-muted small pt-2 ps-1">laporan</span>
                   </div>
                 </div>
@@ -54,7 +54,7 @@ Dashboard
                     <i class="bi bi-briefcase"></i>
                   </div>
                   <div class="ps-3">
-                    <h6>-</h6>
+                    <h6><?= $data_pengadaan?></h6>
                     <span class="text-muted small pt-2 ps-1">laporan</span>
 
                   </div>
@@ -76,7 +76,7 @@ Dashboard
                     <i class="bi bi-person-workspace"></i>
                   </div>
                   <div class="ps-3">
-                    <h6>-</h6>
+                    <h6><?= $data_kepegawaian?></h6>
                     <span class="text-muted small pt-2 ps-1">laporan</span>
 
                   </div>
@@ -98,7 +98,7 @@ Dashboard
                     <i class="bi bi-puzzle"></i>
                   </div>
                   <div class="ps-3">
-                    <h6>-</h6>
+                    <h6><?= $data_wewenang?></h6>
                     <span class="text-muted small pt-2 ps-1">laporan</span>
 
                   </div>
@@ -120,7 +120,7 @@ Dashboard
                     <i class="bi bi-currency-dollar"></i>
                   </div>
                   <div class="ps-3">
-                    <h6>-</h6>
+                    <h6><?= $data_keuangan?></h6>
                     <span class="text-muted small pt-2 ps-1">laporan</span>
 
                   </div>
@@ -143,6 +143,12 @@ Dashboard
             <div id="trafficChart" style="min-height: 500px;" class="echart"></div>
 
             <script>
+            let dataKorupsi = <?= $data_korupsi ?>;
+            let dataPengadaan = <?= $data_pengadaan?>;
+            let dataKepegawaian = <?= $data_kepegawaian ?>;
+            let dataWewenang = <?= $data_wewenang ?>;
+            let dataKeuangan = <?= $data_keuangan ?>;
+
               document.addEventListener("DOMContentLoaded", () => {
                 echarts.init(document.querySelector("#trafficChart")).setOption({
                   tooltip: {
@@ -172,23 +178,23 @@ Dashboard
                       show: false
                     },
                     data: [{
-                        value: 1048,
+                        value: dataKorupsi,
                         name: 'Korupsi'
                       },
                       {
-                        value: 735,
+                        value: dataPengadaan,
                         name: 'Pengadaan Barang/Jasa'
                       },
                       {
-                        value: 580,
+                        value: dataKepegawaian,
                         name: 'Pelanggaran Kepegawaian'
                       },
                       {
-                        value: 484,
+                        value: dataWewenang,
                         name: 'Penyalahgunaan Wewenang'
                       },
                       {
-                        value: 300,
+                        value: dataKeuangan,
                         name: 'Pelanggaran Pengelolaan Keuangan'
                       }
                     ]
@@ -208,6 +214,15 @@ Dashboard
         <div class="card-body">
           <h5 class="card-title">Pengaduan</h5>
 
+          @if(Session::has('success'))
+          <div class="alert alert-success">
+              {{ Session::get('success') }}
+          </div>
+          @elseif (Session::has('failed'))
+              <div class="alert alert-danger">
+                  {{ Session::get('failed') }}
+              </div>
+          @endif  
           <table class="table table-borderless datatable">
             <thead>
               <tr>
@@ -221,26 +236,50 @@ Dashboard
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>2457</td>
-                <td>####</td>
-                <td>####</td>
-                <td>####</td>
-                <td><span class="badge bg-success">Pengaduan Selesai</span></td>
-                <td>
-                  <a href="{{url('/detailpengaduan')}}" class="btn btn-success">
+              @foreach($data_pengaduan as $index => $pengaduan)
+
+              <tr data-href="{{url('pengaduan/rincian/'.$pengaduan->id)}}">
+                <th scope="row">{{$index+1}}</th>
+                <td>{{$pengaduan->no_pengaduan}}</td>
+                <td>    @if ($pengaduan->kategori == 1)
+                  Korupsi
+                  @elseif ($pengaduan->kategori == 2)
+                  Pengadaan Barang/Jasa
+                  @elseif ($pengaduan->kategori == 3)
+                  Pelanggaran Pengelolaan Keuangan
+                  @elseif ($pengaduan->kategori == 4)
+                  Pelanggaran Kepegawaian
+                  @elseif ($pengaduan->kategori == 5)
+                  Penyalahgunaan Wewenang
+                  @endif</td>
+                <td>{{$pengaduan->judul}}</td>
+                <td>{{$pengaduan->tanggal}}</td>
+                  @if($pengaduan->status == 'Pengaduan Baru')
+                <td><span class="badge bg-primary">{{$pengaduan->status}}</span></td>
+                  @elseif($pengaduan->status == 'Pengaduan Selesai')
+                  <td><span class="badge bg-success">{{$pengaduan->status}}</span></td>
+                  @elseif($pengaduan->status == 'Pengaduan Ditolak')
+                  <td><span class="badge bg-danger">{{$pengaduan->status}}</span></td>
+                  @elseif($pengaduan->status == 'Sedang Ditelaah')
+                  <td><span class="badge bg-warning">{{$pengaduan->status}}</span></td>
+                @endif
+                <td class="d-flex justify-evenly">
+                  <a href="{{url('dashboard/pengaduan/detail/'.$pengaduan->id)}}" class="btn btn-success">
                     <i class="bi bi-arrows-fullscreen"></i>
                   </a>
-                  <a href="{{url('/editpengaduan')}}" class="btn btn-primary">
+                  <a  href="{{url('dashboard/pengaduan/'.$pengaduan->id)}}" class="mx-1 btn btn-primary">
                     <i class="bi bi-pencil-square"></i>
                   </a>
-                  <a href="{{url('/hapuspengaduan')}}" class="btn btn-danger btn-delete">
-                    <i class="bi bi-trash-fill"></i>
-                  </a>
+                  <form id="deleteForm" action="{{ url('dashboard/pengaduan/delete/'.$pengaduan->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger" type="submit">
+                        <i class="bi bi-trash-fill"></i>
+                    </button>
+                </form>
                 </td>
               </tr>
-
+              @endforeach
             </tbody>
           </table>
 

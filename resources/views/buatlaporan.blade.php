@@ -35,12 +35,17 @@ Buat Laporan
               <form class="row g-3" action="{{ url('dashboard/laporan/post') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="col-md-12">
-                  <div class="form-floating">
-                    <input type="text" class="form-control" id="nomor_aduan" name="nomor_aduan" placeholder="Your Name" required>
-                    <label for="floatingName">Nomor Aduan</label>
-                  </div>
+                    <select class="form-select" aria-label="Default select example" id="nomor_aduan" name="nomor_aduan" required>
+                    </select>
                 </div>
 
+                <div class="col-md-12">
+                    <div class="form-floating">
+                      <input type="text" class="form-control" id="judul_pengaduan" placeholder="Your Name" name="judul_pengaduan" required readonly>
+                      <label for="floatingName">Judul Pengaduan</label>
+                    </div>
+                  </div>
+                
                 <div class="col-md-12">
                   <div class="form-floating">
                     <input type="text" class="form-control" id="nomor_sk"  name="nomor_sk" placeholder="Your Name" required> 
@@ -48,12 +53,6 @@ Buat Laporan
                   </div>
                 </div>
 
-                <div class="col-md-12">
-                    <div class="form-floating">
-                      <input type="text" class="form-control" id="floatingName" placeholder="Your Name" name="judul_pengaduan" required>
-                      <label for="floatingName">Judul Pengaduan</label>
-                    </div>
-                  </div>
 
                   <div class="col-sm-12">
                     <label for="inputNumber" class="col-sm-2 col-form-label">Lampiran</label>
@@ -91,16 +90,36 @@ Buat Laporan
       </div>
     </section>
     <script>
-      const generateSK = () => {
-          document.getElementById('nomor_aduan').addEventListener('change', function() {
-              let value = this.value;
-              document.getElementById('nomor_sk').value = value + '/UNSIKA/' + new Date().getFullYear();
-          });
-      };
       
-      document.addEventListener('DOMContentLoaded', function() {
-          generateSK();
+      const getData = async () =>{
+        const response = await fetch('<?= url('api/pengaduan') ?>'); 
+        let option = '';
+        option +=`<option selected disabled>Nomor Aduan</option>`
+
+        response.json().then(data => {
+          data.map((item) => {
+            option += `<option value="${item.id}">${item.no_pengaduan}</option>`;
+          });
+          document.getElementById('nomor_aduan').innerHTML = option; 
+        });
+      }
+      const setValueJudul = async (id) => {
+      const response = await fetch('<?= url('api/pengaduan') ?>' +'/'+ id); 
+      response.json().then(data => {
+        document.getElementById('judul_pengaduan').value = data.judul;
       });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('nomor_sk').value = '/UNSIKA/' + new Date().getFullYear();
+      getData();
+
+      document.getElementById('nomor_aduan').addEventListener('change', async (e) => {
+        const selectedOption = e.target.selectedOptions[0];
+        const idPengaduan = selectedOption.value; 
+        await setValueJudul(idPengaduan); 
+      });
+    });
       
       </script>
 @endsection
