@@ -5,66 +5,94 @@ Edit Status Pengaduan
 @endsection
 
 @section('main')
+@if(Session::has('success'))
+<div class="alert alert-success">
+    {{ Session::get('success') }}
+</div>
+@elseif (Session::has('failed'))
+    <div class="alert alert-danger">
+        {{ Session::get('failed') }}
+    </div>
+@endif
     <div class="row">
       <div class="card">
           <div class="card-body">
             <h5 class="card-title">Rincian Pengaduan</h5>
 
             <!-- Form -->
-            <form class="row g-3">
-
+            <form class="row g-3" method="POST" action={{url('dashboard/pengaduan/update/'.$data->id)}}>
+                @csrf
+                @method('PUT')
               <div class="col-sm-12">
-                  <label for="floatingName">Kategori Pelanggaran : </label>
-              </div>
+                <label for="floatingName"><b>Kategori Pelanggaran :</b>
+
+                    @if ($data->kategori == 1)
+                    Korupsi
+                    @elseif ($data->kategori == 2)
+                    Pengadaan Barang/Jasa
+                    @elseif ($data->kategori == 3)
+                    Pelanggaran Pengelolaan Keuangan
+                    @elseif ($data->kategori == 4)
+                    Pelanggaran Kepegawaian
+                    @elseif ($data->kategori == 5)
+                    Penyalahgunaan Wewenang
+                    @endif
+                 </label>        
+            </div>
 
               <div class="col-md-12">
-                  <label for="floatingName">Judul Pengaduan : </label>
+                <label for="floatingName"><b>Judul Pengaduan :</b> {{$data->judul}}</label>
+            </div>
+
+              <div class="col-sm-12">
+                <label for="floatingName"><b>Uraian :</b> {{$data->uraian}}</label>
+            </div>
+
+            <div class="col-sm-12">
+                <label for="floatingName"><b>Tanggal :</b> {{$data->tanggal}}</label>
+            </div>
+            
+            <div class="col-sm-12">
+                <label for="floatingName"><b>Waktu Perkiraan :</b> {{$data->time}}</label>
+            </div>
+
+           <div class="col-sm-12">
+                  <label for="floatingName"><b>Lampiran</b></label>
+              </div>
+              <div class="col-sm-12">
+                <embed src="{{ asset('/uploads/' . $data->lampiran) }}" type="application/pdf" width="500" height="400">
               </div>
 
               <div class="col-sm-12">
-                  <label for="floatingName">Uraian : </label>
-              </div>
+                <label for="floatingName"><b>PIHAK YANG DIDUGA TERLIBAT</b> </label>
+            </div>
 
-              <div class="col-sm-12">
-                  <label for="floatingName">Lampiran : </label>
-              </div>
+            <div class="col-sm-12">
+                <label for="floatingName"><b>Nama Lengkap :</b> {{$data->terlapor->nama_terlapor}}</label>
+            </div>
 
-              <div class="col-sm-12">
-                <embed src="{{asset('/tema/asset/pdf/contoh.pdf')}}" type="application/pdf" width="500" height="400">
-              </div>
+            <div class="col-sm-12">
+                <label for="floatingName"><b>Jabatan :</b> {{$data->terlapor->jabatan}} </label>
+            </div>
 
-              <div class="col-sm-12">
-                  <label for="floatingName">Pihak Yang Diduga Terlibat </label>
-              </div>
+            <div class="col-sm-12">
+                <label for="floatingName"><b>Klasifikasi Jabatan :</b>
+                  @if($data->terlapor->klasifikasi == 1)
+                  PNS
+                  @else
+                  Non PNS
+                  @endif
+               </label>
+            </div>
 
-              <div class="col-sm-12">
-                  <label for="floatingName">Nama Lengkap : </label>
-              </div>
 
-              <div class="col-sm-12">
-                  <label for="floatingName">Jabatan : </label>
-              </div>
-
-              <div class="col-sm-12">
-                  <label for="floatingName">Klasifikasi Jabatan : </label>
-              </div>
-
-              <div class="col-sm-12">
-                  <label for="floatingName">Tanggal : </label>
-              </div>
-
-              <div class="col-sm-12">
-                  <label for="floatingName">Waktu Perkiraan : </label>
-              </div>
-
-              <label class="col-sm-2 col-form-label">Ubah Status</label>
+              <label class="col-sm-2 col-form-label"><b>Ubah Status</b></label>
                   <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example">
-                      <option selected disabled>Ubah Status</option>
-                      <option value="1">Pengaduan Baru</option>
-                      <option value="2">Pengaduan Selesai</option>
-                      <option value="3">Sedang Ditelaah</option>
-                      <option value="4">Pengaduan Ditolak</option>
+                    <select class="form-select" aria-label="Default select example" name="status_pengaduan">
+                        <option value="Pengaduan Baru" {{ $data->status == 'Pengaduan Baru' ? 'selected' : '' }}>Pengaduan Baru</option>
+                        <option value="Pengaduan Selesai" {{ $data->status == 'Pengaduan Selesai' ? 'selected' : '' }}>Pengaduan Selesai</option>
+                        <option value="Sedang Ditelaah" {{ $data->status == 'Sedang Ditelaah' ? 'selected' : '' }}>Sedang Ditelaah</option>
+                        <option value="Pengaduan Ditolak" {{ $data->status == 'Pengaduan Ditolak' ? 'selected' : '' }}>Pengaduan Ditolak</option>
                     </select>
                   </div>
 

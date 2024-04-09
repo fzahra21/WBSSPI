@@ -16,7 +16,6 @@ class LaporanController extends Controller
         $request->validate([
             'nomor_aduan' => 'required',
             'nomor_sk' => 'required',
-            'judul_pengaduan' =>'required',
             'lampiran' => 'required',
             'jenis_laporan' => 'required',
             'keterangan' => 'required'
@@ -31,11 +30,10 @@ class LaporanController extends Controller
         }
         
         $laporan = Laporan::create([
-            'no_aduan' => $request->nomor_aduan,
+            'id_pengaduan' => $request->nomor_aduan,
             'no_sk' => $request->nomor_sk,
             'lampiran' =>$fileName,
             'jenis_laporan' => $request-> jenis_laporan,
-            'judul_pengaduan' => $request-> judul_pengaduan,
             'keterangan' => $request-> keterangan
         ]);
         

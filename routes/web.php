@@ -26,6 +26,12 @@ Route::get('/detailpengaduan', [PublicController::class, 'detailpengaduan']);
 
 Route::group(['middleware' => ['auth','role:auditor'], 'prefix' => 'dashboard'], function() {
     Route::get('/', [DashboardController::class, 'index']);
+    Route::prefix('pengaduan')->group(function(){
+        Route::get('/detail/{id}',[PengaduanController::class,'index_detail_pengaduan']);
+        Route::get('/{id}',[PengaduanController::class,'index_update_pengaduan']);
+        Route::put('/update/{id}',[PengaduanController::class,'update_status_pengaduan']);
+        Route::delete('/delete/{id}',[PengaduanController::class,'delete_pengaduan']);
+    });
     Route::prefix('laporan')->group(function() {
         Route::get('buat', [LaporanController::class, 'index']);
         Route::post('post', [LaporanController::class, 'create_laporan']);
@@ -38,3 +44,6 @@ Route::group(['middleware'=>['auth','role:whistleblower'],'prefix'=>'pengaduan']
     Route::post('/post',[PengaduanController::class,'create_pengaduan']);
     Route::get('/rincian/{id}', [PengaduanController::class, 'index_detail']);
 });
+
+Route::get('api/pengaduan', [PengaduanController::class, 'get_pengaduan_api']);
+Route::get('api/pengaduan/{id}', [PengaduanController::class, 'get_pengaduan_api_by_id']);

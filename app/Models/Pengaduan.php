@@ -31,4 +31,9 @@ class Pengaduan extends Model
     {
         return $this->belongsTo(Terlapor::class,'id_pelapor');
     }
+
+    public function laporan()
+    {
+        return $this->hasMany(Laporan::class,'id_pengaduan');
+    }
 }
