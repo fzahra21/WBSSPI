@@ -37,7 +37,7 @@ Edit Status Pengaduan
                     @elseif ($data->kategori == 5)
                     Penyalahgunaan Wewenang
                     @endif
-                 </label>        
+                 </label>
             </div>
 
               <div class="col-md-12">
@@ -51,7 +51,7 @@ Edit Status Pengaduan
             <div class="col-sm-12">
                 <label for="floatingName"><b>Tanggal :</b> {{$data->tanggal}}</label>
             </div>
-            
+
             <div class="col-sm-12">
                 <label for="floatingName"><b>Waktu Perkiraan :</b> {{$data->time}}</label>
             </div>
@@ -90,8 +90,14 @@ Edit Status Pengaduan
                   <div class="col-sm-10">
                     <select class="form-select" aria-label="Default select example" name="status_pengaduan">
                         <option value="Pengaduan Baru" {{ $data->status == 'Pengaduan Baru' ? 'selected' : '' }}>Pengaduan Baru</option>
-                        <option value="Pengaduan Selesai" {{ $data->status == 'Pengaduan Selesai' ? 'selected' : '' }}>Pengaduan Selesai</option>
+                        <option value="Pengaduan Diterima" {{ $data->status == 'Pengaduan Diterima' ? 'selected' : '' }}>Pengaduan Diterima</option>
+                        <option value="Sedang Diverifikasi" {{ $data->status == 'Sedang Diverifikasi' ? 'selected' : '' }}>Sedang Diverifikasi</option>
+                        <option value="Verifikasi Selesai" {{ $data->status == 'Verifikasi Selesai' ? 'selected' : '' }}>Verifikasi Selesai</option>
                         <option value="Sedang Ditelaah" {{ $data->status == 'Sedang Ditelaah' ? 'selected' : '' }}>Sedang Ditelaah</option>
+                        <option value="Telaah Selesai" {{ $data->status == 'Telaah Selesai' ? 'selected' : '' }}>Telaah Selesai</option>
+                        <option value="Telaah Disetujui" {{ $data->status == 'Telaah Disetujui' ? 'selected' : '' }}>Telaah Disetujui</option>
+                        <option value="Sedang Ditindaklanjuti" {{ $data->status == 'Sedang Ditindaklanjuti' ? 'selected' : '' }}>Sedang Ditindaklanjuti</option>
+                        <option value="Tindak Lanjut Selesai" {{ $data->status == 'Tindak Lanjut Selesai' ? 'selected' : '' }}>Tindak Lanjut Selesai</option>
                         <option value="Pengaduan Ditolak" {{ $data->status == 'Pengaduan Ditolak' ? 'selected' : '' }}>Pengaduan Ditolak</option>
                     </select>
                   </div>

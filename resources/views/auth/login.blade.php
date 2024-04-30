@@ -35,7 +35,7 @@ Login
 @section('main')
 <section class="section register min-vh-80 d-flex flex-column align-items-center justify-content-center py-4">
     <div class="container">
-    {{-- 
+    {{--
         <div class="flash-message">
             @foreach (['danger','warning','success','info'] as $msg)
                 @if(Session::has('alert-'.$msg))
@@ -52,7 +52,7 @@ Login
             {{ Session::get('success') }}
         </div>
         @endif
-        
+
         @if(count($errors) > 0)
             <div class="alert alert-danger">
                 <ul>
@@ -108,6 +108,7 @@ Login
                 </div>
                 <div class="col-12">
                     <p class="small mb-0">Don't have account? <a href="{{url('/register')}}">Create an account</a></p>
+                    <p class="small mb-0"><a href="{{url('/forgotpassword')}}">Forgot Password</a></p>
                 </div>
               </form>
 

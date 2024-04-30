@@ -1,4 +1,3 @@
-
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
@@ -25,7 +24,7 @@
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li>
-              
+
               <form class="dropdown-item d-flex align-items-center" action = "{{'/logout'}}">
                 <button type="submit" class="border-0 bg-transparent">
                   <i class="bi bi-box-arrow-right"></i>

@@ -36,7 +36,7 @@ Buat Pengaduan
                 <select class="form-select" name="kategori_pelanggaran" aria-label="Default select example" required>
                   <option selected disabled>Pilih Kategori Pelanggaran</option>
                   <option value="1">Korupsi</option>
-                  <option value="2">Pengadaan Barang/Jasa</option>
+                  <option value="2">Pelaggaran Pengadaan Barang/Jasa</option>
                   <option value="3">Pelanggaran Pengelolaan Keuangan</option>
                   <option value="4">Pelanggaran Kepegawaian</option>
                   <option value="5">Penyalahgunaan Wewenang</option>

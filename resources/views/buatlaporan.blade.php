@@ -45,10 +45,10 @@ Buat Laporan
                       <label for="floatingName">Judul Pengaduan</label>
                     </div>
                   </div>
-                
+
                 <div class="col-md-12">
                   <div class="form-floating">
-                    <input type="text" class="form-control" id="nomor_sk"  name="nomor_sk" placeholder="Your Name" required> 
+                    <input type="text" class="form-control" id="nomor_sk"  name="nomor_sk" placeholder="Your Name" required>
                     <label for="floatingName">Nomor SK</label>
                   </div>
                 </div>
@@ -62,13 +62,15 @@ Buat Laporan
                   <div class="col-sm-12">
                     <select class="form-select" aria-label="Default select example" name="jenis_laporan" required>
                       <option selected disabled>Jenis Laporan</option>
-                      <option value="1">Hasil Verifikasi</option>
-                      <option value="2">Identitas Pelapor</option>
-                      <option value="3">Materi Laporan</option>
-                      <option value="4">Hasil Telaah</option>
-                      <option value="5">Laporan Hasil</option>
-                      <option value="6">Kesimpulan Hasil</option>
-                      <option value="7">Laporan Monitoring</option>
+                      <option value="1">Pengaduan Baru</option>
+                      <option value="2">Pengaduan Diterima</option>
+                      <option value="3">Sedang Diverifikasi</option>
+                      <option value="4">Verifikasi Selesai</option>
+                      <option value="5">Sedang Ditelaah</option>
+                      <option value="6">Telaah Selesai</option>
+                      <option value="7">Telaah Disetujui</option>
+                      <option value="8">Sedang Ditindaklanjuti</option>
+                      <option value="9">Tindak Lanjut Selesai</option>
                     </select>
                   </div>
 
@@ -90,9 +92,9 @@ Buat Laporan
       </div>
     </section>
     <script>
-      
+
       const getData = async () =>{
-        const response = await fetch('<?= url('api/pengaduan') ?>'); 
+        const response = await fetch('<?= url('api/pengaduan') ?>');
         let option = '';
         option +=`<option selected disabled>Nomor Aduan</option>`
 
@@ -100,11 +102,11 @@ Buat Laporan
           data.map((item) => {
             option += `<option value="${item.id}">${item.no_pengaduan}</option>`;
           });
-          document.getElementById('nomor_aduan').innerHTML = option; 
+          document.getElementById('nomor_aduan').innerHTML = option;
         });
       }
       const setValueJudul = async (id) => {
-      const response = await fetch('<?= url('api/pengaduan') ?>' +'/'+ id); 
+      const response = await fetch('<?= url('api/pengaduan') ?>' +'/'+ id);
       response.json().then(data => {
         document.getElementById('judul_pengaduan').value = data.judul;
       });
@@ -116,11 +118,11 @@ Buat Laporan
 
       document.getElementById('nomor_aduan').addEventListener('change', async (e) => {
         const selectedOption = e.target.selectedOptions[0];
-        const idPengaduan = selectedOption.value; 
-        await setValueJudul(idPengaduan); 
+        const idPengaduan = selectedOption.value;
+        await setValueJudul(idPengaduan);
       });
     });
-      
+
       </script>
 @endsection
 

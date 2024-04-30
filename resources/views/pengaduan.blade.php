@@ -37,12 +37,13 @@ Pengaduan Saya
                     <th scope="col">Judul</th>
                     <th scope="col">Tanggal</th>
                     <th scope="col">Status</th>
+                    <th scope="col">Action</th>
                   </tr>
                 </thead>
                 <tbody >
                   @foreach($data as $index => $pengaduan)
 
-                  <tr data-href="{{url('pengaduan/rincian/'.$pengaduan->id)}}">
+                  <tr data-href="">
                     <th scope="row">{{$index+1}}</th>
                     <td>{{$pengaduan->no_pengaduan}}</td>
                     <td>    @if ($pengaduan->kategori == 1)
@@ -67,6 +68,11 @@ Pengaduan Saya
                       @elseif($pengaduan->status == 'Sedang Ditelaah')
                       <td><span class="badge bg-warning">{{$pengaduan->status}}</span></td>
                     @endif
+                    <td class="d-flex justify-evenly">
+                        <a href="{{url('pengaduan/rincian/'.$pengaduan->id)}}" class="btn btn-success">
+                          <i class="bi bi-arrows-fullscreen"></i>
+                        </a>
+                    </td>
                   </tr>
                   @endforeach
                 </tbody>

@@ -7,83 +7,138 @@ Rincian Pengaduan
 @section('main')
 <section class="section">
     <div class="row">
-      <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Rincian Pengaduan</h5>
+        <div class="col-12">
+          <div class="card recent-sales overflow-auto">
 
-            <!-- Form -->
-            <form class="row g-3">
+            <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Rincian Pengaduan</h5>
 
-              <div class="col-sm-12">
-                  <label for="floatingName"><b>Kategori Pelanggaran :</b>
+                  <table class="table">
+                    <tbody>
+                        <th scope="col">Kategori Pelanggaran</th>
+                        <td>
+                            @if ($data->kategori == 1)
+                            Korupsi
+                            @elseif ($data->kategori == 2)
+                            Pengadaan Barang/Jasa
+                            @elseif ($data->kategori == 3)
+                            Pelanggaran Pengelolaan Keuangan
+                            @elseif ($data->kategori == 4)
+                            Pelanggaran Kepegawaian
+                            @elseif ($data->kategori == 5)
+                            Penyalahgunaan Wewenang
+                            @endif
+                        </td>
+                      <tr>
+                        <th scope="row">Judul Pengaduan</th>
+                        <td>{{$data->judul}}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Uraian</th>
+                        <td>{{$data->uraian}}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Tanggal</th>
+                        <td>{{$data->tanggal}}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Waktu Perkiraan</th>
+                        <td>{{$data->time}}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Lampiran</th>
+                        <td class="d-flex justify-evenly">
+                            <a href="{{ asset('/uploads/' . $data->lampiran) }}" class="btn btn-success" target="_blank" rel="noopener noreferrer">
+                                <i class="bi bi-arrows-fullscreen"></i>
+                            </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row" colspan="2">PIHAK Yang DIDUGA TERLIBAT</th>
+                      </tr>
+                      <tr>
+                        <th scope="row">Nama Lengkap</th>
+                        <td>{{$data->terlapor->nama_terlapor}}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Jabatan</th>
+                        <td>{{$data->terlapor->jabatan}}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Klasifikasi Jabatan</th>
+                        <td>
+                            @if($data->terlapor->klasifikasi == 1)
+                            PNS
+                            @else
+                            Non PNS
+                            @endif
+                        </td>
+                      </tr>
 
-                   @if ($data->kategori == 1)
-                   Korupsi
-                   @elseif ($data->kategori == 2)
-                   Pengadaan Barang/Jasa
-                   @elseif ($data->kategori == 3)
-                   Pelanggaran Pengelolaan Keuangan
-                   @elseif ($data->kategori == 4)
-                   Pelanggaran Kepegawaian
-                   @elseif ($data->kategori == 5)
-                   Penyalahgunaan Wewenang
-                   @endif
-                </label>
+                    </tbody>
+                  </table>
+                </div>
               </div>
 
-              <div class="col-md-12">
-                  <label for="floatingName"><b>Judul Pengaduan :</b> {{$data->judul}}</label>
-              </div>
-
-              <div class="col-sm-12">
-                  <label for="floatingName"><b>Uraian :</b> {{$data->uraian}}</label>
-              </div>
-
-              <div class="col-sm-12">
-                <label for="floatingName"><b>Tanggal :</b> {{$data->tanggal}}</label>
             </div>
 
-            <div class="col-sm-12">
-                <label for="floatingName"><b>Waktu Perkiraan :</b> {{$data->time}}</label>
+            <div class="col-12">
+                <div class="card recent-sales overflow-auto">
+
+                  <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">Update Status Pengaduan</h5>
+
+                        <table class="table">
+                          <tbody>
+                            <thead>
+                                <th scope="col">Status Pengaduan</th>
+                                <th scope="col">Tanggal</th>
+                            </thead>
+                            <tr>
+                                <td scope="col">Pengaduan Baru</td>
+                                <td>21-04-2024</td>
+                            </tr>
+                            <tr>
+                                <td scope="col">Pengaduan Diterima</td>
+                                <td>24-04-2024</td>
+                            </tr>
+                            <tr>
+                                <td scope="col">Sedang Diverifikasi</td>
+                                <td>27-04-2024</td>
+                            </tr>
+                            <tr>
+                                <td scope="col">Verifikasi Selesai</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td scope="col">Sedang Ditelaah</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td scope="col">Telaah Selesai</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td scope="col">Telaah Disetujui</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td scope="col">Sedang Ditindaklanjuti</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td scope="col">Tindak Lanjut Selesai</td>
+                                <td>-</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+
+                  </div>
             </div>
-
-              <div class="col-sm-12">
-                  <label for="floatingName"><b>Lampiran</b></label>
-              </div>
-
-              <div class="col-sm-12">
-                <embed src="{{ asset('/uploads/' . $data->lampiran) }}" type="application/pdf" width="500" height="400">
-              </div>
-
-              <div class="col-sm-12">
-                  <label for="floatingName"><b>PIHAK YANG DIDUGA TERLIBAT</b> </label>
-              </div>
-
-              <div class="col-sm-12">
-                  <label for="floatingName"><b>Nama Lengkap :</b> {{$data->terlapor->nama_terlapor}}</label>
-              </div>
-
-              <div class="col-sm-12">
-                  <label for="floatingName"><b>Jabatan :</b> {{$data->terlapor->jabatan}} </label>
-              </div>
-
-              <div class="col-sm-12">
-                  <label for="floatingName"><b>Klasifikasi Jabatan :</b>
-                    @if($data->terlapor->klasifikasi == 1)
-                    PNS
-                    @else
-                    Non PNS
-                    @endif
-                 </label>
-              </div>
-
-
-
-            </form>
-
-          </div>
-      </div>
-
     </div>
   </section>
 @endsection

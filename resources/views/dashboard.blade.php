@@ -47,7 +47,7 @@ Dashboard
             <div class="card info-card jasa-card">
 
               <div class="card-body">
-                <h5 class="card-title">Pengadaan Barang/Jasa</h5>
+                <h5 class="card-title">Pelanggaran Pengadaan Barang/Jasa</h5>
 
                 <div class="d-flex align-items-center">
                   <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -183,7 +183,7 @@ Dashboard
                       },
                       {
                         value: dataPengadaan,
-                        name: 'Pengadaan Barang/Jasa'
+                        name: 'Pelanggaran Pengadaan Barang/Jasa'
                       },
                       {
                         value: dataKepegawaian,
@@ -222,7 +222,7 @@ Dashboard
               <div class="alert alert-danger">
                   {{ Session::get('failed') }}
               </div>
-          @endif  
+          @endif
           <table class="table table-borderless datatable">
             <thead>
               <tr>

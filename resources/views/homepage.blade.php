@@ -284,7 +284,7 @@ Beranda
                 <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-5" class="collapsed">Apakah pengaduan yang saya berikan selalu mendapatkan respon? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
                 <div id="faq-list-5" class="collapse" data-bs-parent=".faq-list">
                   <p>
-                    Pengaduan yang Anda berikan akan direspon dan tercantum dalam aplikasi laspika ini dan akan terupdate secara otomatis sesuai dengan respon yang telah diberikan oleh pihak penerima pengaduan. Untuk dapat melihat respon yang diberikan, Anda harus masuk terlebih dahulu dengan username yang telah Anda registrasikan di aplikasi ini dan Anda dapat melihat status pengaduan dalam history pengaduan sesuai dengan nomor register pengaduan yang didapatkan. Sebagai catatan, pengaduan Anda akan lebih mudah ditindaklanjuti apabila memenuhi unsur pengaduan.
+                    Pengaduan yang Anda berikan akan direspon dan tercantum dalam website LASPIKA ini dan akan terupdate secara otomatis sesuai dengan respon yang telah diberikan oleh pihak penerima pengaduan. Untuk dapat melihat respon yang diberikan, Anda harus masuk terlebih dahulu dengan username yang telah Anda registrasikan di aplikasi ini dan Anda dapat melihat status pengaduan dalam history pengaduan sesuai dengan nomor register pengaduan yang didapatkan. Sebagai catatan, pengaduan Anda akan lebih mudah ditindaklanjuti apabila memenuhi unsur pengaduan.
                   </p>
                 </div>
               </li>
@@ -321,7 +321,7 @@ Beranda
             <h4>Indikasi Pelanggaran</h4>
             <ul>
               <li><i class="bx bx-chevron-right"></i>Pidana Korupsi</li>
-              <li><i class="bx bx-chevron-right"></i>Pengadaan Barang/Jasa</li>
+              <li><i class="bx bx-chevron-right"></i>Pelanggaran Pengadaan Barang/Jasa</li>
               <li><i class="bx bx-chevron-right"></i>Pelanggaran Pengelolaan Keuangan</li>
               <li><i class="bx bx-chevron-right"></i>Pelanggaran Kepegawaian</li>
               <li><i class="bx bx-chevron-right"></i>Penyalahgunaan Wewenang</li>
