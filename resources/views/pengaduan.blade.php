@@ -61,12 +61,24 @@ Pengaduan Saya
                     <td>{{$pengaduan->tanggal}}</td>
                       @if($pengaduan->status == 'Pengaduan Baru')
                     <td><span class="badge bg-primary">{{$pengaduan->status}}</span></td>
-                      @elseif($pengaduan->status == 'Pengaduan Selesai')
-                      <td><span class="badge bg-success">{{$pengaduan->status}}</span></td>
-                      @elseif($pengaduan->status == 'Pengaduan Ditolak')
-                      <td><span class="badge bg-danger">{{$pengaduan->status}}</span></td>
+                      @elseif($pengaduan->status == 'Pengaduan Diterima')
+                      <td><span class="badge bg-primary-subtle text-primary-emphasis">{{$pengaduan->status}}</span></td>
+                      @elseif($pengaduan->status == 'Sedang Diverifikasi')
+                      <td><span class="badge bg-warning text-dark">{{$pengaduan->status}}</span></td>
+                      @elseif($pengaduan->status == 'Verifikasi Selesai')
+                      <td><span class="badge bg-warning-subtle text-warning-emphasis">{{$pengaduan->status}}</span></td>
                       @elseif($pengaduan->status == 'Sedang Ditelaah')
-                      <td><span class="badge bg-warning">{{$pengaduan->status}}</span></td>
+                      <td><span class="badge bg-info text-dark">{{$pengaduan->status}}</span></td>
+                      @elseif($pengaduan->status == 'Telaah Selesai')
+                      <td><span class="badge bg-warning-subtle text-warning-emphasis">{{$pengaduan->status}}</span></td>
+                      @elseif($pengaduan->status == 'Telaah Disetujui')
+                      <td><span class="badge bg-light text-dark">{{$pengaduan->status}}</span></td>
+                      @elseif($pengaduan->status == 'Sedang Ditindaklanjuti')
+                      <td><span class="badge bg-success-subtle text-success-emphasis">{{$pengaduan->status}}</span></td>
+                      @elseif($pengaduan->status == 'Tindak Lanjut Selesai')
+                      <td><span class="badge bg-success text-white">{{$pengaduan->status}}</span></td>
+                      @elseif($pengaduan->status == 'Pengaduan Ditolak')
+                      <td><span class="badge bg-danger text-white">{{$pengaduan->status}}</span></td>
                     @endif
                     <td class="d-flex justify-evenly">
                         <a href="{{url('pengaduan/rincian/'.$pengaduan->id)}}" class="btn btn-success">
