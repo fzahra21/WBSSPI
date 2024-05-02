@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pengaduan;
+use App\Models\RiwayatPengaduan;
 use App\Models\Terlapor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +18,8 @@ class PengaduanController extends Controller
 
     public function index_detail ($id) {
         $data = Pengaduan::with('terlapor')->findOrFail($id);
-        return view('rincianpengaduan',compact('data'));
+        dd($data);
+        // return view('rincianpengaduan',compact('data'));
     }
     public function index_create_pengaduan()
     {
@@ -32,7 +34,7 @@ class PengaduanController extends Controller
 
     public function index_detail_pengaduan($id)
     {
-        $data = Pengaduan::with('terlapor', 'laporan')->findOrFail($id);
+        $data = Pengaduan::with('terlapor', 'laporan','riwayat_status')->findOrFail($id);
         return view('detailpengaduan',compact('data'));
     }
     public function create_pengaduan(Request $request){
@@ -74,7 +76,12 @@ class PengaduanController extends Controller
             'id_pelapor' => $request->id_pelapor,
             'id_terlapor'=> $terlapor->id,
         ]);
-                
+
+        RiwayatPengaduan::create([
+            'status'=>'Pengaduan Baru',
+            'id_pengaduan' => $pengaduan->id
+        ]);
+        
         if(!$pengaduan){
             Session::flash('failed', 'Terjadi Kesalahan');
         }
@@ -91,7 +98,13 @@ class PengaduanController extends Controller
 
         $pengaduan->update([
             'status' => $request->status_pengaduan
-        ]);    
+        ]);
+        
+        RiwayatPengaduan::create([
+            'status'=>$request->status_pengaduan,
+            'id_pengaduan' => $id
+        ]);
+
         if(!$pengaduan){
             Session::flash('failed', 'Terjadi Kesalahan');
         }
