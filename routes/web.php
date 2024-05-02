@@ -21,8 +21,6 @@ use App\Http\Controllers\PengaduanController;
 require __DIR__.'/auth.php';
 
 Route::get('/', [PublicController::class, 'index']);
-Route::get('/editpengaduan', [PublicController::class, 'editpengaduan']);
-Route::get('/detailpengaduan', [PublicController::class, 'detailpengaduan']);
 
 Route::group(['middleware' => ['auth','role:auditor'], 'prefix' => 'dashboard'], function() {
     Route::get('/', [DashboardController::class, 'index']);

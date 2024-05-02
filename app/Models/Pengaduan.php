@@ -36,4 +36,9 @@ class Pengaduan extends Model
     {
         return $this->hasMany(Laporan::class,'id_pengaduan');
     }
+
+    public function riwayat_status()
+    {
+        return $this->hasMany(RiwayatPengaduan::class, 'id_pengaduan', 'id');
+    }
 }

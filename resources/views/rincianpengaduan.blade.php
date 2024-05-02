@@ -97,40 +97,99 @@ Rincian Pengaduan
                                 <th scope="col">Tanggal</th>
                             </thead>
                             <tr>
-                                <td scope="col">Pengaduan Baru</td>
-                                <td>21-04-2024</td>
+                              <td scope="col">Pengaduan Baru</td>
+                              <td>
+                                @foreach ($data->riwayat_status as $item)        
+                                @if ($item->status == 'Pengaduan Baru')
+                                {{ $item->created_at->format('Y-m-d') }}
+                                @break
+                                @endif                             
+                                 @endforeach
+                              </td>
+                          </tr>
+                          <tr>
+                              <td scope="col">Pengaduan Diterima</td>
+                              <td>
+                                @foreach ($data->riwayat_status as $item)        
+                                @if ($item->status == 'Pengaduan Diterima')
+                                {{ $item->created_at->format('Y-m-d') }}
+                                @break
+                                @endif                             
+                                 @endforeach
+                              </td>
+                          </tr>
+                          <tr>
+                              <td scope="col">Sedang Diverifikasi</td>
+                              <td>
+                                @foreach ($data->riwayat_status as $item)        
+                                  @if ($item->status == 'Sedang Diverifikasi')
+                                    {{ $item->created_at->format('Y-m-d') }}
+                                    @break
+                                  @endif                             
+                                @endforeach
+                              </td>
+                          </tr>
+                          <tr>
+                              <td scope="col">Verifikasi Selesai</td>
+                              <td>
+                                @foreach ($data->riwayat_status as $item)        
+                                  @if ($item->status == 'Verifikasi Selesai')
+                                    {{ $item->created_at->format('Y-m-d') }}
+                                    @break
+                                  @endif                             
+                                @endforeach
+                              </td>                        </tr>
+                          <tr>
+                              <td scope="col">Sedang Ditelaah</td>
+                              <td>
+                                @foreach ($data->riwayat_status as $item)        
+                                  @if ($item->status == 'Sedang Ditelaah')
+                                    {{ $item->created_at->format('Y-m-d') }}
+                                    @break
+                                  @endif                             
+                                @endforeach
+                              </td>                        </tr>
+                          <tr>
+                              <td scope="col">Telaah Selesai</td>
+                              <td>
+                                @foreach ($data->riwayat_status as $item)        
+                                  @if ($item->status == 'Telaah Selesai')
+                                    {{ $item->created_at->format('Y-m-d') }}
+                                    @break
+                                  @endif                             
+                                @endforeach
+                              </td>                        </tr>
+                          <tr>
+                              <td scope="col">Telaah Disetujui</td>
+                              <td>
+                                @foreach ($data->riwayat_status as $item)        
+                                  @if ($item->status == 'Telaah Disetujui')
+                                    {{ $item->created_at->format('Y-m-d') }}
+                                    @break
+                                  @endif                             
+                                @endforeach
+                              </td>                        </tr>
+                          <tr>
+                              <td scope="col">Sedang Ditindaklanjuti</td>
+                              <td>
+                                @foreach ($data->riwayat_status as $item)        
+                                  @if ($item->status == 'Sedang Ditindaklanjuti')
+                                    {{ $item->created_at->format('Y-m-d') }}
+                                    @break
+                                  @endif                             
+                                @endforeach
+                              </td>                        
                             </tr>
-                            <tr>
-                                <td scope="col">Pengaduan Diterima</td>
-                                <td>24-04-2024</td>
-                            </tr>
-                            <tr>
-                                <td scope="col">Sedang Diverifikasi</td>
-                                <td>27-04-2024</td>
-                            </tr>
-                            <tr>
-                                <td scope="col">Verifikasi Selesai</td>
-                                <td>-</td>
-                            </tr>
-                            <tr>
-                                <td scope="col">Sedang Ditelaah</td>
-                                <td>-</td>
-                            </tr>
-                            <tr>
-                                <td scope="col">Telaah Selesai</td>
-                                <td>-</td>
-                            </tr>
-                            <tr>
-                                <td scope="col">Telaah Disetujui</td>
-                                <td>-</td>
-                            </tr>
-                            <tr>
-                                <td scope="col">Sedang Ditindaklanjuti</td>
-                                <td>-</td>
-                            </tr>
-                            <tr>
-                                <td scope="col">Tindak Lanjut Selesai</td>
-                                <td>-</td>
+                          <tr>
+                              <td scope="col">Tindak Lanjut Selesai</td>
+                              <td>
+                                @foreach ($data->riwayat_status as $item)        
+                                  @if ($item->status == 'Tindak Lanjut Selesai')
+                                    {{ $item->created_at->format('Y-m-d') }}
+                                    @break
+                                  @endif                             
+                                @endforeach
+                              </td>
                             </tr>
                           </tbody>
                         </table>

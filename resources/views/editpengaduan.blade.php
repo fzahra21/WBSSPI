@@ -88,7 +88,7 @@ Edit Status Pengaduan
 
               <label class="col-sm-2 col-form-label"><b>Ubah Status</b></label>
                   <div class="col-sm-10">
-                    <select class="form-select" aria-label="Default select example" name="status_pengaduan">
+                    <select class="form-select" aria-label="Default select example" name="status_pengaduan" id="statusSelect">
                         <option value="Pengaduan Baru" {{ $data->status == 'Pengaduan Baru' ? 'selected' : '' }}>Pengaduan Baru</option>
                         <option value="Pengaduan Diterima" {{ $data->status == 'Pengaduan Diterima' ? 'selected' : '' }}>Pengaduan Diterima</option>
                         <option value="Sedang Diverifikasi" {{ $data->status == 'Sedang Diverifikasi' ? 'selected' : '' }}>Sedang Diverifikasi</option>
@@ -112,4 +112,14 @@ Edit Status Pengaduan
       </div>
 
     </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var statusSelect = document.getElementById('statusSelect');
+        var selectedIndex = statusSelect.selectedIndex;
+        for (var i = 0; i < selectedIndex; i++) {
+            statusSelect.options[i].disabled = true;
+        }
+    });
+
+  </script>
 @endsection
