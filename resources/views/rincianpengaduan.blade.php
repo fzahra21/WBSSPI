@@ -8,7 +8,6 @@ Rincian Pengaduan
 <section class="section">
     <div class="row">
         <div class="col-12">
-          <div class="card recent-sales overflow-auto">
 
             <div class="card">
                 <div class="card-body">
@@ -84,7 +83,7 @@ Rincian Pengaduan
             </div>
 
             <div class="col-12">
-                <div class="card recent-sales overflow-auto">
+
 
                   <div class="card">
                       <div class="card-body">
@@ -99,97 +98,110 @@ Rincian Pengaduan
                             <tr>
                               <td scope="col">Pengaduan Baru</td>
                               <td>
-                                @foreach ($data->riwayat_status as $item)        
+                                @foreach ($data->riwayat_status as $item)
                                 @if ($item->status == 'Pengaduan Baru')
                                 {{ $item->created_at->format('Y-m-d') }}
                                 @break
-                                @endif                             
+                                @endif
                                  @endforeach
                               </td>
                           </tr>
                           <tr>
                               <td scope="col">Pengaduan Diterima</td>
                               <td>
-                                @foreach ($data->riwayat_status as $item)        
+                                @foreach ($data->riwayat_status as $item)
                                 @if ($item->status == 'Pengaduan Diterima')
                                 {{ $item->created_at->format('Y-m-d') }}
                                 @break
-                                @endif                             
+                                @endif
                                  @endforeach
                               </td>
                           </tr>
                           <tr>
                               <td scope="col">Sedang Diverifikasi</td>
                               <td>
-                                @foreach ($data->riwayat_status as $item)        
+                                @foreach ($data->riwayat_status as $item)
                                   @if ($item->status == 'Sedang Diverifikasi')
                                     {{ $item->created_at->format('Y-m-d') }}
                                     @break
-                                  @endif                             
+                                  @endif
                                 @endforeach
                               </td>
                           </tr>
                           <tr>
                               <td scope="col">Verifikasi Selesai</td>
                               <td>
-                                @foreach ($data->riwayat_status as $item)        
+                                @foreach ($data->riwayat_status as $item)
                                   @if ($item->status == 'Verifikasi Selesai')
                                     {{ $item->created_at->format('Y-m-d') }}
                                     @break
-                                  @endif                             
+                                  @endif
                                 @endforeach
-                              </td>                        </tr>
+                              </td>
+                          </tr>
                           <tr>
                               <td scope="col">Sedang Ditelaah</td>
                               <td>
-                                @foreach ($data->riwayat_status as $item)        
+                                @foreach ($data->riwayat_status as $item)
                                   @if ($item->status == 'Sedang Ditelaah')
                                     {{ $item->created_at->format('Y-m-d') }}
                                     @break
-                                  @endif                             
+                                  @endif
                                 @endforeach
-                              </td>                        </tr>
+                              </td>
+                          </tr>
                           <tr>
                               <td scope="col">Telaah Selesai</td>
                               <td>
-                                @foreach ($data->riwayat_status as $item)        
+                                @foreach ($data->riwayat_status as $item)
                                   @if ($item->status == 'Telaah Selesai')
                                     {{ $item->created_at->format('Y-m-d') }}
                                     @break
-                                  @endif                             
+                                  @endif
                                 @endforeach
                               </td>                        </tr>
                           <tr>
                               <td scope="col">Telaah Disetujui</td>
                               <td>
-                                @foreach ($data->riwayat_status as $item)        
+                                @foreach ($data->riwayat_status as $item)
                                   @if ($item->status == 'Telaah Disetujui')
                                     {{ $item->created_at->format('Y-m-d') }}
                                     @break
-                                  @endif                             
+                                  @endif
                                 @endforeach
                               </td>                        </tr>
                           <tr>
                               <td scope="col">Sedang Ditindaklanjuti</td>
                               <td>
-                                @foreach ($data->riwayat_status as $item)        
+                                @foreach ($data->riwayat_status as $item)
                                   @if ($item->status == 'Sedang Ditindaklanjuti')
                                     {{ $item->created_at->format('Y-m-d') }}
                                     @break
-                                  @endif                             
+                                  @endif
                                 @endforeach
-                              </td>                        
+                              </td>
                             </tr>
                           <tr>
                               <td scope="col">Tindak Lanjut Selesai</td>
                               <td>
-                                @foreach ($data->riwayat_status as $item)        
+                                @foreach ($data->riwayat_status as $item)
                                   @if ($item->status == 'Tindak Lanjut Selesai')
                                     {{ $item->created_at->format('Y-m-d') }}
                                     @break
-                                  @endif                             
+                                  @endif
                                 @endforeach
                               </td>
+                            </tr>
+                            <tr>
+                                <td scope="col">Pengaduan Ditolak</td>
+                                <td>
+                                  @foreach ($data->riwayat_status as $item)
+                                    @if ($item->status == 'Pengaduan Ditolak')
+                                      {{ $item->created_at->format('Y-m-d') }}
+                                      @break
+                                    @endif
+                                  @endforeach
+                                </td>
                             </tr>
                           </tbody>
                         </table>

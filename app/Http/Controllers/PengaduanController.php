@@ -17,9 +17,8 @@ class PengaduanController extends Controller
     }
 
     public function index_detail ($id) {
-        $data = Pengaduan::with('terlapor')->findOrFail($id);
-        dd($data);
-        // return view('rincianpengaduan',compact('data'));
+        $data = Pengaduan::with('terlapor','laporan','riwayat_status')->findOrFail($id);
+        return view('rincianpengaduan',compact('data'));
     }
     public function index_create_pengaduan()
     {
@@ -63,7 +62,7 @@ class PengaduanController extends Controller
             'klasifikasi' => $request->klasifikasi_jabatan
         ]);
         $lastId = Pengaduan::max('id');
-        
+
         $pengaduan = Pengaduan::create([
             'no_pengaduan' => ($lastId+1) . '/unsika/pengaduan/2024',
             'kategori' => $request->kategori_pelanggaran,
@@ -81,14 +80,14 @@ class PengaduanController extends Controller
             'status'=>'Pengaduan Baru',
             'id_pengaduan' => $pengaduan->id
         ]);
-        
+
         if(!$pengaduan){
             Session::flash('failed', 'Terjadi Kesalahan');
         }
         Session::flash('success','Berhasil membuat Pengaduan');
         return redirect()->back();
     }
-    
+
     public function update_status_pengaduan($id,Request $request){
         $request->validate([
             'status_pengaduan'=>'required'
@@ -99,7 +98,7 @@ class PengaduanController extends Controller
         $pengaduan->update([
             'status' => $request->status_pengaduan
         ]);
-        
+
         RiwayatPengaduan::create([
             'status'=>$request->status_pengaduan,
             'id_pengaduan' => $id
@@ -111,12 +110,12 @@ class PengaduanController extends Controller
         Session::flash('success','Berhasil mengubah Status Pengaduan');
         return redirect()->back();
     }
-    
+
     public function delete_pengaduan($id){
         $pengaduan = Pengaduan::find($id);
         $pengaduan->delete($id);
 
-        
+
         if(!$pengaduan){
             Session::flash('failed', 'Terjadi Kesalahan');
         }
