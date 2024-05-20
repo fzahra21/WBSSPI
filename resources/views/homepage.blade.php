@@ -182,7 +182,7 @@ Beranda
               </div>
             </div>
 
-            <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+            <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-5 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
               <div class="icon-box">
                 <div class="icon"><i class="bi bi-person"></i></div>
                 <h4><a href="">Siapa</a></h4>

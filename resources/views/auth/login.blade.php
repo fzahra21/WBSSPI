@@ -35,17 +35,6 @@ Login
 @section('main')
 <section class="section register min-vh-80 d-flex flex-column align-items-center justify-content-center py-4">
     <div class="container">
-    {{--
-        <div class="flash-message">
-            @foreach (['danger','warning','success','info'] as $msg)
-                @if(Session::has('alert-'.$msg))
-                    <p class="alert alert-{{$msg}}">
-                        {{ Session::get('alert-'.$msg) }} <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                    </p>
-
-                @endif
-            @endforeach
-        </div> --}}
 
         @if(Session::has('success'))
         <div class="alert alert-success">
@@ -108,8 +97,8 @@ Login
                 </div>
                 <div class="col-12">
                     <p class="small mb-0">Don't have account? <a href="{{url('/register')}}">Create an account</a></p>
-                    <p class="small mb-0"><a href="{{url('/forgotpassword')}}">Forgot Password</a></p>
-                    <p class="small mb-0">Login with <a href="">Gmail</a></p>
+                    {{-- <p class="small mb-0"><a href="{{url('/forgotpassword')}}">Forgot Password</a></p>
+                    <p class="small mb-0">Login with <a href="">Gmail</a></p> --}}
                 </div>
               </form>
 
